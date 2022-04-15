@@ -26,14 +26,18 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/showSummary', methods=['POST'])
-def show_summary():
-    email = request.form['email']
-    list_clubs_email = [club for club in clubs if club['email'] == email]
-    if len(list_clubs_email) == 0:
-        return render_template('index.html', error="Email non trouvé")
-    return render_template('welcome.html', club=club, competitions=competitions)
+# @app.route('/showSummary', methods=['POST'])
+# def show_summary():
+#     email = request.form['email']
+#     list_clubs_email = [club for club in clubs if club['email'] == email]
+#     if len(list_clubs_email) == 0:
+#         return render_template('index.html', error="Email non trouvé")
+#     return render_template('welcome.html', club=club, competitions=competitions)
 
+@app.route('/showSummary',methods=['POST'])
+def showSummary():
+    club = [club for club in clubs if club['email'] == request.form['email']][0]
+    return render_template('welcome.html',club=club,competitions=competitions)
 
 @app.route('/book/<competition>/<club>')
 def book(competition, club):
