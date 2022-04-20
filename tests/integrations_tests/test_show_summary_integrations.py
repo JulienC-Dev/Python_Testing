@@ -1,30 +1,31 @@
+from flask import url_for
+import flask
+import pytest
+from flask_testing import TestCase
 
 
-# def test_show_summary_empty(client):
-#     """
-#     #     GIVEN - What are the initial conditions for the test ?
-#     #     Client avec data email vide
-#     #     WHEN - What is occurring that needs to be tested ?
-#     #     THEN - What is the expected response ?
-#     #     avoir un status 200 sur le endpoint "/"
-#     #     """
-#     response = client.post('/showSummary', data={'email': ''})
-#     assert response.status_code == 200
+def test_route_summary_valid_user(app, email, captured_templates):
+    with app.test_client() as client:
+        response = client.post('/showSummary', data=email, follow_redirects=True)
+        data = response.data.decode()
+        assert len(captured_templates) == 1
+        template, context = captured_templates[0]
+        assert template.name == "welcome.html"
+        assert '<p>Email non trouvé</p>' not in data
+        assert "competitions" in context
+        assert "club" in context
+
+
+def test_show_summary_invalid_user(app, email, captured_templates):
+    invalid_email = {"email": ""}
+    with app.test_client() as client:
+        response = client.post("/showSummary", data=invalid_email)
+        assert len(captured_templates) == 1
+        template, context = captured_templates[0]
+        assert template.name == "index.html"
+        assert email['email'] != invalid_email['email']
+        data = response.data.decode()
+        assert '<p>Email non trouvé</p>' in data
 
 
 
-# def test_show_valid_email(client):
-#     """
-#     GIVEN - What are the initial conditions for the test ?
-#     Client avec un data email vide
-#     WHEN - What is occurring that needs to be tested ?
-#     THEN - What is the expected response ?
-#     avoir un status 200 sur le endpoint "/"
-#     """
-#     data = {
-#         "email": ""
-#     }
-#     response = client.post('/',data=data)
-#     assert response.status_code == 200
-#
-# #
