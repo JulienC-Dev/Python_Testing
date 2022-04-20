@@ -16,6 +16,11 @@ def email():
 
 
 @pytest.fixture
+def name():
+    name = {"name": ["Iron Temple"]}
+    return name
+
+@pytest.fixture
 def app():
     client = server.app
     return client

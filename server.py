@@ -30,9 +30,11 @@ def index():
 def show_summary():
     email = request.form['email']
     list_clubs_email = [club for club in clubs if club['email'] == email]
+
     if len(list_clubs_email) == 0:
         return render_template('index.html', error="Email non trouvé")
-    return render_template('welcome.html', club=list_clubs_email, competitions=competitions)
+
+    return render_template('welcome.html', club=list_clubs_email[0], competitions=competitions)
 
 
 @app.route('/book/<competition>/<club>')
@@ -62,3 +64,7 @@ def purchasePlaces():
 @app.route('/logout')
 def logout():
     return redirect(url_for('index'))
+
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
