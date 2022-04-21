@@ -20,11 +20,17 @@ def name():
     name = {"name": ["Iron Temple"]}
     return name
 
+
 @pytest.fixture
 def point():
     point = {"point": ["4"]}
     return point
 
+
+@pytest.fixture
+def name_competion():
+    name_competion = {"name": ["Spring Festival"]}
+    return name_competion
 
 @pytest.fixture
 def app():
