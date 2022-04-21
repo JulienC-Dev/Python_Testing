@@ -17,9 +17,8 @@ def test_show_summary_title_register(client, email, name):
 
 
 # import flask
-# from flask import current_app
+# from flask import current_app, url_for, request
 # def test_hfdhjfdjdf(app):
 #     with app.test_request_context("/"):
 #         with current_app.test_request_context():
-#             print(flask.request.method)
 #             assert flask.request.path == '/'
