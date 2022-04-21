@@ -21,6 +21,12 @@ def name():
     return name
 
 @pytest.fixture
+def point():
+    point = {"point": ["4"]}
+    return point
+
+
+@pytest.fixture
 def app():
     client = server.app
     return client

@@ -15,6 +15,12 @@ def test_show_summary_title_register(client, email, name):
     assert f'<h2>Welcome, {name_db} </h2>' in data
 
 
+def test_show_summary_point_register(client, email, point):
+    response = client.post("/showSummary", data=email)
+    data = response.data.decode()
+    point_db = point['point'][0]
+    assert f'<p>Points available: {point_db}</p>' in data
+
 
 # import flask
 # from flask import current_app, url_for, request
