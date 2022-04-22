@@ -32,6 +32,13 @@ def name_competion():
     name_competion = {"name": ["Spring Festival"]}
     return name_competion
 
+
+@pytest.fixture
+def points_competion():
+    points_competion = {"numberOfPlaces": ["25"]}
+    return points_competion
+
+
 @pytest.fixture
 def app():
     client = server.app

@@ -60,10 +60,15 @@ def purchasePlaces():
         competition['numberOfPlaces'] = competition['numberOfPlaces'] + placesRequired
         flash('booking not complete! insufficient numbers of points')
         return render_template('welcome.html', club=club, competitions=competitions)
-    if placesRequired < 0:
+    if placesRequired <= 0:
         club['points'] = int(club['points']) + placesRequired
         competition['numberOfPlaces'] = competition['numberOfPlaces'] + placesRequired
         flash('booking not complete! invalid numbers of points')
+        return render_template('welcome.html', club=club, competitions=competitions)
+    if placesRequired > 12:
+        club['points'] = int(club['points']) + placesRequired
+        competition['numberOfPlaces'] = competition['numberOfPlaces'] + placesRequired
+        flash('booking not complete! cannot book more than 12 persons')
         return render_template('welcome.html', club=club, competitions=competitions)
     flash('Great-booking complete!')
     return render_template('welcome.html', club=club, competitions=competitions)
