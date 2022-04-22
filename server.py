@@ -1,6 +1,6 @@
 import json
 from flask import Flask, render_template, request, redirect, flash, url_for
-
+from datetime import datetime
 
 def loadClubs():
     with open('clubs.json') as c:
@@ -20,6 +20,9 @@ app.secret_key = 'something_special'
 competitions = loadCompetitions()
 clubs = loadClubs()
 
+myDate = datetime.now()
+formated_data = myDate.strftime("%Y-%m-%d %H:%M:%S")
+
 
 @app.route('/')
 def index():
@@ -30,11 +33,10 @@ def index():
 def show_summary():
     email = request.form['email']
     list_clubs_email = [club for club in clubs if club['email'] == email]
-
     if len(list_clubs_email) == 0:
         return render_template('index.html', error="Email non trouvé")
 
-    return render_template('welcome.html', club=list_clubs_email[0], competitions=competitions)
+    return render_template('welcome.html', club=list_clubs_email[0], competitions=competitions, date=formated_data)
 
 
 @app.route('/book/<competition>/<club>')
@@ -42,9 +44,10 @@ def book(competition, club):
     try:
         foundClub = [c for c in clubs if c['name'] == club][0]
         foundCompetition = [c for c in competitions if c['name'] == competition][0]
+
     except:
         flash("Something went wrong-please try again")
-        return render_template('welcome.html', club=club, competitions=competitions)
+        return render_template('welcome.html', club=club, competitions=competitions, date=formated_data)
     return render_template('booking.html', club=foundClub, competition=foundCompetition)
 
 
@@ -59,19 +62,19 @@ def purchasePlaces():
         club['points'] = int(club['points']) + placesRequired
         competition['numberOfPlaces'] = competition['numberOfPlaces'] + placesRequired
         flash('booking not complete! insufficient numbers of points')
-        return render_template('welcome.html', club=club, competitions=competitions)
+        return render_template('welcome.html', club=club, competitions=competitions, date=formated_data)
     if placesRequired <= 0:
         club['points'] = int(club['points']) + placesRequired
         competition['numberOfPlaces'] = competition['numberOfPlaces'] + placesRequired
         flash('booking not complete! invalid numbers of points')
-        return render_template('welcome.html', club=club, competitions=competitions)
+        return render_template('welcome.html', club=club, competitions=competitions, date=formated_data)
     if placesRequired > 12:
         club['points'] = int(club['points']) + placesRequired
         competition['numberOfPlaces'] = competition['numberOfPlaces'] + placesRequired
         flash('booking not complete! cannot book more than 12 persons')
-        return render_template('welcome.html', club=club, competitions=competitions)
+        return render_template('welcome.html', club=club, competitions=competitions, date=formated_data)
     flash('Great-booking complete!')
-    return render_template('welcome.html', club=club, competitions=competitions)
+    return render_template('welcome.html', club=club, competitions=competitions, date=formated_data)
 
 
 # TODO: Add route for points display
