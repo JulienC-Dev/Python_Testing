@@ -22,9 +22,9 @@ def name():
 
 
 @pytest.fixture
-def point():
-    point = {"point": ["4"]}
-    return point
+def point_club():
+    point_club = {"point": ["4"]}
+    return point_club
 
 
 @pytest.fixture
