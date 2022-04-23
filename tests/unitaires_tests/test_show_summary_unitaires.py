@@ -2,8 +2,10 @@ from Python_Testing import server
 from Python_Testing.server import formated_data
 
 
-def test_show_summary_valide_email(email):
+def test_show_summary_valide_email(client, email):
+    response = client.post("/showSummary", data=dict(email=email["email"][0]))
     assert len(email["email"]) == 1
+    assert response.status_code == 200
 
 
 def test_show_summary_not_allowed(client):
@@ -16,6 +18,15 @@ def test_show_summary_title_register(client, email, name):
     data = response.data.decode()
     name_db = name['name'][0]
     assert f'<h2>Welcome, {name_db} </h2>' in data
+
+
+def test_show_summary_point_register(mocker, client, email):
+    fake_club = [{"name": "Iron Temple", "email": "admin@irontemple.com", "points": "4"}]
+    mocker.patch.object(server, 'clubs', fake_club)
+    response = client.post("/showSummary", data=email)
+    data = response.data.decode()
+    fake_club_point = fake_club[0]["points"]
+    assert f'<p>Points available: {fake_club_point}</p>' in data
 
 
 def test_book_valid_url_booking_display(mocker, client, email):
@@ -34,22 +45,3 @@ def test_show_summary_invalid_url_booking_display(mocker, client, email):
     data = response.data.decode()
     assert fake_competitions[0]['date'] < formated_data
     assert 'Book Places' not in data
-
-
-
-# def test_show_summary_point_register(client, email):
-#     response = client.post("/showSummary", data=email)
-#     data = response.data.decode()
-#     input_point = {'point': '2'}
-#     input_point = input_point['point']
-#     assert f'<p>Points available: {input_point}</p>' in data
-
-
-
-# import flask
-# from flask import current_app, url_for, request
-# def test_hfdhjfdjdf(captured_templates,app):
-#     with app.test_request_context(data={'name': 'Spring Festival', 'date': '2020-03-27 10:00:00', 'numberOfPlaces': '215'}):
-#         with current_app.test_request_context():
-#             print(captured_templates)
-#             assert flask.request.path == '/'

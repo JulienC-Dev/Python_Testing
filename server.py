@@ -35,7 +35,6 @@ def show_summary():
     list_clubs_email = [club for club in clubs if club['email'] == email]
     if len(list_clubs_email) == 0:
         return render_template('index.html', error="Email non trouvé")
-    print(competitions)
     return render_template('welcome.html', club=list_clubs_email[0], competitions=competitions, date=formated_data)
 
 

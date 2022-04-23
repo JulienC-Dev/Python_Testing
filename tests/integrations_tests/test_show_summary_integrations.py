@@ -1,8 +1,3 @@
-from flask import url_for
-import flask
-import pytest
-from flask_testing import TestCase
-
 
 def test_route_summary_valid_user(app, email, captured_templates):
     with app.test_client() as client:
