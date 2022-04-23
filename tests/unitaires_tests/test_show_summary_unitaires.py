@@ -1,13 +1,8 @@
-from Python_Testing.server import show_summary
 
-def test_show_summary_valide_email(mocker, client, email):
+def test_show_summary_valide_email(client, email):
+    response = client.post("/showSummary", data=dict(email=email["email"][0]))
     assert len(email["email"]) == 1
-    email = email["email"][0]
-    m = mocker.patch(show_summary, 'list_clubs_email', 2)
-    response = client.post("/showSummary", data=email)
-
-    print(m)
-
+    assert response.status_code == 200
 
 
 def test_show_summary_not_allowed(client):
@@ -28,10 +23,3 @@ def test_show_summary_point_register(client, email, point):
     point_db = point['point'][0]
     assert f'<p>Points available: {point_db}</p>' in data
 
-
-# import flask
-# from flask import current_app, url_for, request
-# def test_hfdhjfdjdf(app):
-#     with app.test_request_context("/"):
-#         with current_app.test_request_context():
-#             assert flask.request.path == '/'

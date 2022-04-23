@@ -16,7 +16,7 @@ def test_route_summary_valid_user(app, email, captured_templates):
         assert "club" in context
 
 
-def test_show_summary_invalid_user(app, email, captured_templates):
+def test_show_summary_route_invalid_email(app, email, captured_templates):
     invalid_email = {"email": ""}
     with app.test_client() as client:
         response = client.post("/showSummary", data=invalid_email)
