@@ -40,6 +40,12 @@ def points_competion():
 
 
 @pytest.fixture
+def date_competition():
+    date_competition = {"date": ["2027-10-22 13:30:00"]}
+    return date_competition
+
+
+@pytest.fixture
 def app():
     client = server.app
     return client
