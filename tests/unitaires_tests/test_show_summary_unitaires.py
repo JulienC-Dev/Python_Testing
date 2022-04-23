@@ -1,6 +1,13 @@
+from Python_Testing.server import show_summary
 
-def test_show_summary_valide_email(email):
+def test_show_summary_valide_email(mocker, client, email):
     assert len(email["email"]) == 1
+    email = email["email"][0]
+    m = mocker.patch(show_summary, 'list_clubs_email', 2)
+    response = client.post("/showSummary", data=email)
+
+    print(m)
+
 
 
 def test_show_summary_not_allowed(client):
