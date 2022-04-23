@@ -1,6 +1,4 @@
-from Python_Testing.server import book
-
-from flask import current_app, url_for, request
+from flask import url_for
 
 
 def test_book_valid_data_url(client, app, name, name_competion):

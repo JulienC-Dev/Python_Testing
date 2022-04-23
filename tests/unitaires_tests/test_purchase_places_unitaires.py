@@ -27,8 +27,8 @@ def test_purchase_place_more_than_balance(client, name, name_competion, point_cl
                            follow_redirects=True )
     data = response.data.decode()
     assert '<li>booking not complete! insufficient numbers of points</li>' in data
-#
-#
+
+
 def test_purchase_place_negative_input(client, name, name_competion):
     input_places_desire = "-10"
     assert int(input_places_desire) < 0
