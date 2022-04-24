@@ -10,17 +10,18 @@
         <table>
             <tr>
                <th>name</th>
-               <th>Email</th>
                <th>Points</th>
             </tr>
             {% for club in clubs %}
                 <tr>
-                   <td>{{club['name']}}</td>
-                   <td>{{club['email']}}</td>
-                   <td>{{club['points']}}</td>
+                   <td style="border:1px solid black">{{club['name']}}</td>
+                   <td style="border:1px solid black">{{club['points']}}</td>
                 </tr>
             {% endfor %}
         </table>
     </div>
+    <form>
+        <input type="button" value="Go back!" onclick="history.back()">
+    </form>
 </body>
 </html>
