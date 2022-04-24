@@ -78,7 +78,6 @@ def purchase_places():
 
 @app.route('/boardClubs')
 def board_clubs():
-
     return render_template('boardclub.html', clubs=clubs)
 
 
