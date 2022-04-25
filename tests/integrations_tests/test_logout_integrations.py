@@ -13,6 +13,7 @@ def test_logout_route_connexion_user(mocker, app):
     fake_club = [{"name": "Iron Temple", "email": "admin@irontemple.com", "points": "4"}]
     fake_competitions = [{'name': 'Spring Festival', 'date': '2020-03-27 10:00:00', 'numberOfPlaces': '215'}]
     valid_email = {"email": "admin@irontemple.com"}
+
     with app.test_client() as client:
         mocker.patch.object(server, 'competitions', fake_competitions)
         mocker.patch.object(server, 'clubs', fake_club)
