@@ -17,10 +17,11 @@ def test_route_summary_valid_user(mocker, app, captured_templates):
         assert "club" in context
 
 
-def test_show_summary_invalid_user(app, captured_templates):
+def test_show_summary_invalid_user(mocker, app, captured_templates):
     fake_club = [{"name": "Iron Temple", "email": "admin@irontemple.com", "points": "4"}]
     invalid_email = {"email": ""}
     with app.test_client() as client:
+        mocker.patch.object(server, 'clubs', fake_club)
         response = client.post("/showSummary", data=invalid_email)
         assert len(captured_templates) == 1
         template, context = captured_templates[0]
