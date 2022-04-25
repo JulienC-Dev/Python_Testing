@@ -1,51 +1,45 @@
-# gudlift-registration
+# Amélioration d'une application Web par des tests et du débogage
 
-1. Why
+## Overview
 
+Ce projet a été implémenté par OpenClassRoom dans le but de s'entraîner à la réalistation de tests unitaires et d'intégrations à l'aide de Pytest.
+Le projet est réalisé sous le framework Flask. L'application est une version légère d'une plateforme de booking pour des compétitions de force(deadlifting, strongman).
+L'objectif est de corriger les nombreux bugs de l'application et de réaliser un maximun de tests cohérents.
+Une liste d'exigences fonctionnelles a dû être respectés pour la correction des bugs.
+Les rapports de tests et de performances Locust se trouvent dans ce repo.
 
-    This is a proof of concept (POC) project to show a light-weight version of our competition booking platform. The aim is the keep things as light as possible, and use feedback from the users to iterate.
+## Tests et developpement
 
-2. Getting Started
+1. Pré-requis pour le lancement du serveur local:
+   
+    * Installer la dernière version de Python sur le site - https://www.python.org
+    * Ouvrir l'interpréteur de commandes de Python
+    * Créer un nouveau repertoire via la commande : ```cd mkdir projet11```
+    * Initialiser un environnement virtuel via la commande : ```python -m venv```
+    * Tapez dans la console et au niveau du dossier racine : ```git init```
+    * Cloner le dépo via la console : ```https://github.com/JulienC-Dev/Python_Testing/tree/dev```
+    * Puis installer les dépendances: ```pip install -r requirements.txt```
+    
 
-    This project uses the following technologies:
-
-    * Python v3.x+
-
-    * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
-
-        Whereas Django does a lot of things for us out of the box, Flask allows us to add only what we need. 
+2. Connection au serveur local http://127.0.0.1:5000/
+   * Aller sur le sous-dossier - Projet9 via la commande  : ```cd projet11```
+   * lancer le serveur local via la commande : ```flask run```
+   * Ouvrir le naviguateur web puis tapez dans la barre de recherche : ```http://127.0.0.1:5000/```
+   
+3. Lancement des tests via Pytest
+   * Exécuter l'ensemble des tests du projet via la commande ```pytest```
+   * la commande ```pytest tests/unitaires_tests``` permet de lancer les tests unitaires 
+   et la commande ```pytest tests/integrations_tests``` les tests d'intégrations
      
+## Ressources
 
-    * [Virtual environment](https://virtualenv.pypa.io/en/stable/installation.html)
+Vous pouvez trouver ces ressources utiles:
 
-        This ensures you'll be able to install the correct packages without interfering with Python on your machine.
+* Full doc Pytest : https://docs.pytest.org/en/6.2.x/contents.html
+* Full doc Flask : https://flask.palletsprojects.com/en/2.1.x/ 
 
-        Before you begin, please ensure you have this installed globally. 
+## Version 1.0.0
 
+Auteur JulienC-Dev - github : https://github.com/JulienC-Dev/Python_Testing/tree/dev
 
-3. Installation
-
-    - After cloning, change into the directory and type <code>virtualenv .</code>. This will then set up a a virtual python environment within that directory.
-
-    - Next, type <code>source bin/activate</code>. You should see that your command prompt has changed to the name of the folder. This means that you can install packages in here without affecting affecting files outside. To deactivate, type <code>deactivate</code>
-
-    - Rather than hunting around for the packages you need, you can install in one step. Type <code>pip install -r requirements.txt</code>. This will install all the packages listed in the respective file. If you install a package, make sure others know by updating the requirements.txt file. An easy way to do this is <code>pip freeze > requirements.txt</code>
-
-    - Flask requires that you set an environmental variable to the python file. However you do that, you'll want to set the file to be <code>server.py</code>. Check [here](https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application) for more details
-
-    - You should now be ready to test the application. In the directory, type either <code>flask run</code> or <code>python -m flask run</code>. The app should respond with an address you should be able to go to using your browser.
-
-4. Current Setup
-
-    The app is powered by [JSON files](https://www.tutorialspoint.com/json/json_quick_guide.htm). This is to get around having a DB until we actually need one. The main ones are:
-     
-    * competitions.json - list of competitions
-    * clubs.json - list of clubs with relevant information. You can look here to see what email addresses the app will accept for login.
-
-5. Testing
-
-    You are free to use whatever testing framework you like-the main thing is that you can show what tests you are using.
-
-    We also like to show how well we're testing, so there's a module called 
-    [coverage](https://coverage.readthedocs.io/en/coverage-5.1/) you should add to your project.
 
