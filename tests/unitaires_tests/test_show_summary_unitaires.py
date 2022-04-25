@@ -6,6 +6,7 @@ def test_show_summary_valide_email(client, email):
     response = client.post("/showSummary", data=dict(email=email["email"][0]))
     assert len(email["email"]) == 1
     assert response.status_code == 200
+    print(response.data)
 
 
 def test_show_summary_not_allowed(client):

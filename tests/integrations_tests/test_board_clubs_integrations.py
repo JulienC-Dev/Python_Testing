@@ -25,7 +25,6 @@ def test_board_club_render_valid_points_after_purchase_places(mocker, client):
     data = res.data.decode()
     assert int(fake_club[0]['points']) == int(expected_points_output)
     fake_points_club = int(fake_club[0]['points'])
-    print(data)
     assert f' <td style="border:1px solid black">{fake_points_club}</td>' in data
 
 
