@@ -19,7 +19,6 @@ def test_board_clubs_valid_render_template(mocker, client, captured_templates):
     assert template.name == "boardclub.html"
     assert context["clubs"] == fake_clubs
     assert fake_clubs[0]['name'] in data
-    assert fake_clubs[0]['email'] in data
     assert fake_clubs[0]['points'] in data
 
 
