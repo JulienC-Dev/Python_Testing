@@ -10,42 +10,6 @@ def client():
 
 
 @pytest.fixture
-def email():
-    email = {"email": ["admin@irontemple.com"]}
-    return email
-
-
-@pytest.fixture
-def name():
-    name = {"name": ["Iron Temple"]}
-    return name
-
-
-@pytest.fixture
-def point_club():
-    point_club = {"point": ["4"]}
-    return point_club
-
-
-@pytest.fixture
-def name_competion():
-    name_competion = {"name": ["Spring Festival"]}
-    return name_competion
-
-
-@pytest.fixture
-def points_competion():
-    points_competion = {"numberOfPlaces": ["25"]}
-    return points_competion
-
-
-@pytest.fixture
-def date_competition():
-    date_competition = {"date": ["2027-10-22 13:30:00"]}
-    return date_competition
-
-
-@pytest.fixture
 def app():
     client = server.app
     return client
