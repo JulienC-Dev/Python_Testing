@@ -30,7 +30,17 @@ Les rapports de tests et de performances Locust se trouvent dans ce repo.
    * Exécuter l'ensemble des tests du projet via la commande ```pytest```
    * la commande ```pytest tests/unitaires_tests``` permet de lancer les tests unitaires 
    et la commande ```pytest tests/integrations_tests``` les tests d'intégrations
-     
+
+4. Création d'un rapport de couverture via Pytest
+   * Ajouter la dépendance ```pip install pytest-cov```
+   * Lancer un test de couverture via la commande ```pytest --cov=.```
+   * Générer le rapport via la commande ```pytest --cov=. --cov-report html```
+   
+5. Tests de performance Locust
+   * Se rendre à la racine du dossier ```.Python_Testing\tests\performance_tests```
+   * Lancer la commande ```locust``` après avoir lancer le serveur
+   * Se rendre sur http://0.0.0.0:8089 pour configurer les tests de performance
+   
 ## Ressources
 
 Vous pouvez trouver ces ressources utiles:
