@@ -57,11 +57,6 @@ def purchase_places():
     places_required = int(request.form['places'])
     competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - places_required
     club['points'] = int(club['points']) - places_required
-    if club['points'] < 0:
-        club['points'] = int(club['points']) + places_required
-        competition['numberOfPlaces'] = competition['numberOfPlaces'] + places_required
-        flash('booking not complete! insufficient numbers of points')
-        return render_template('welcome.html', club=club, competitions=competitions, date=formated_data)
     if competition['numberOfPlaces'] < 0:
         club['points'] = int(club['points']) + places_required
         competition['numberOfPlaces'] = competition['numberOfPlaces'] + places_required
@@ -77,6 +72,18 @@ def purchase_places():
         competition['numberOfPlaces'] = competition['numberOfPlaces'] + places_required
         flash('booking not complete! cannot book more than 12 persons')
         return render_template('welcome.html', club=club, competitions=competitions, date=formated_data)
+
+    club['points'] = int(club['points']) + places_required
+    competition['numberOfPlaces'] = int(competition['numberOfPlaces']) + places_required
+    places_required = int(request.form['places']) * 3
+    club['points'] = int(club['points']) - places_required
+    competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - places_required
+    if club['points'] < 0:
+        club['points'] = int(club['points']) + places_required
+        competition['numberOfPlaces'] = competition['numberOfPlaces'] + places_required
+        flash('booking not complete! insufficient numbers of points')
+        return render_template('welcome.html', club=club, competitions=competitions, date=formated_data)
+    competition['numberOfPlaces'] = int(competition['numberOfPlaces']) + places_required -1
     flash('Great-booking complete!')
     return render_template('welcome.html', club=club, competitions=competitions, date=formated_data)
 
