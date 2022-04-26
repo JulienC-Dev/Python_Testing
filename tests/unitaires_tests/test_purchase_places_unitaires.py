@@ -3,12 +3,12 @@ from Python_Testing import server
 
 def test_purchase_places_valid_balance_point_club_and_point_competition(mocker, client):
     input_places_desire = "2"
-    expected_output_points_club = 3
-    expected_competition_points = 14
+    expected_output_points_club = 0
+    expected_competition_points = 15
     fake_club = [{
         "name": "le club fake 1",
         "email": "jj@simplylift.co",
-        "points": "5"
+        "points": "6"
     }]
     fake_competition = [{
         "name": "Test Fake compétition 1",

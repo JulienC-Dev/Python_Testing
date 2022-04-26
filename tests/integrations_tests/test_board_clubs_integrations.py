@@ -13,7 +13,7 @@ def test_board_club_render_valid_points_after_purchase_places(mocker, client):
         "date": "2020-03-27 10:00:00",
         "numberOfPlaces": "25"
     }]
-    expected_points_output = "21"
+    expected_points_output = "15"
     club_name = fake_club[0]['name']
     name_competion = fake_competition[0]['name']
     mocker_club = mocker.patch.object(server, 'clubs', fake_club)
